@@ -27,8 +27,6 @@ int main()
 		cout << "time : " << k + 1 << endl;
 		n = sendto(sock, str, strlen(str) + 1, 0, (struct sockaddr*)&serv1, len_serv1);
 		cout << "client 1 sends to 12345:" << str << ' ' << n + 1 << endl;
-		n = recvfrom(sock, str, 100, 0, (struct sockaddr*)&serv1, &len_serv1);
-		cout << "recv:" << str << ' ' << n << endl;
 		Sleep(1000);
 	}
 	closesocket(sock);

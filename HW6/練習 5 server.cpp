@@ -82,18 +82,20 @@ int main()
 	n = WSAStartup(0x101, (WSADATA*)&wsadata);
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
 	int k = 0;
+	int len_serv = sizeof(serv);
+	int len_client = sizeof(client);
+	n = bind(sock, (struct sockaddr*)&serv, len_serv);
+	cout << "Ready to recv on " << port << "......" << endl;
+
 	while (true)
 	{
-		cout << endl << "time " << ++k << endl;
-		int len_serv = sizeof(serv);
-		int len_client = sizeof(client);
-		n = bind(sock, (struct sockaddr*)&serv, len_serv);
-		cout << "Ready to recv on " << port << "......" << endl;
+		//cout << endl << "time " << ++k << endl;
+		
 		n = recvfrom(sock, str, 100, 0, (struct sockaddr*)&client, &len_client);
 		auto ip = inet_ntoa(client.sin_addr);
 		int porr = ntohs(client.sin_port);
 
-		cout << "recv:" << str << ' ' << n << endl;
+		cout << "recv:" << str << ' '<<"(" << n <<")"<< endl;
 		memset(str, '\0', sizeof(str));
 		Sleep(100);
 

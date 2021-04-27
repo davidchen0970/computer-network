@@ -93,12 +93,10 @@ int main()
 		auto ip = inet_ntoa(client.sin_addr);
 		int porr = ntohs(client.sin_port);
 
-		cout << "recv:" << str << ' ' << n << endl;
+		cout << "recv:" << str << ' ' << n << " IP:" << "127.0.0.1" << "(" << porr << ")" << endl;
 		memset(str, '\0', sizeof(str));
 		string temppp = "I hate NP!";
 		to_chr(temppp, str);
-		n = sendto(sock, str, strlen(str) + 1, 0, (struct sockaddr*)&client, len_client);
-		cout << "send:" << str << ' ' << n + 1 << "IP=" << ip << ", port=" << porr << endl;
 		Sleep(100);
 
 	}
